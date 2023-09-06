@@ -1,6 +1,6 @@
 /**
- * A function that execute
- * x times a function
+ * A funstion tha execute
+ * x times a funxtion
  */
 
 function callMeMoby(x, theFunction){
