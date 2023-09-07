@@ -9,6 +9,5 @@ function createObject(value, incrFunction) {
   
   // Function to increment the value property of an object
   function increment(obj) {
-    obj.value += 1;
-    return obj;
+    return createObject(obj.value + 1, obj.incr); 
   }
