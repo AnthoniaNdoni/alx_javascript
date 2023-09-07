@@ -11,3 +11,9 @@ function createObject(value, incrFunction) {
   function increment(obj) {
     return createObject(obj.value + 1, obj.incr); 
   }
+
+  // Create and print the objects
+let obj1 = createObject(12);
+let obj2 = createObject(13, () => increment(obj2));
+let obj3 = createObject(14, () => increment(obj3));
+let obj4 = createObject(15, () => increment(obj4));
