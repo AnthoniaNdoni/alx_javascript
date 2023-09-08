@@ -15,11 +15,14 @@ module.exports = class Rectangle {
     // Print a square of asterisks
     print() {
         for (let i = 0; i < this.height; i++) {
-            let row = '';
             for (let j = 0; j < this.width; j++) {
-                row += '* ';
-            }
-            console.log(row);
-        }
+                console.log('*');
+            };
+            console.log('');
+        };
     }
 }
+
+// Usage:
+const myRectangle = new Rectangle(3, 3);
+myRectangle.printRectangle();
