@@ -253,7 +253,3 @@ class Rectangle {
           }
       }
   }
-
-  // Usage:
-const myRectangle = new Rectangle(3, 3);
-myRectangle.printRectangle();
