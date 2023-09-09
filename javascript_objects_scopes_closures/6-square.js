@@ -7,7 +7,7 @@ module.exports = class Square extends Sqr{
     constructor(c){
         super(c);
     }
-    charprint(c){
+    charPrint(c){
         if (c == null){
             super.print()
         }
