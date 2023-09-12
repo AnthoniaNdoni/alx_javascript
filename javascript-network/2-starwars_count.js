@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 const request = require('request');
 
 // Get the API URL from the command line arguments
@@ -18,7 +20,7 @@ request.get(apiUrl, (error, response, body) => {
             const moviesWithWedgeAntilles = filmsData.filter((film) =>
                 film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
             );
-            console.log(`Number of movies with Wedge Antilles: ${moviesWithWedgeAntilles.length}`);
+            console.log(moviesWithWedgeAntilles.length); // Print only the number of movies
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
