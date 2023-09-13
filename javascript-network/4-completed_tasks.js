@@ -15,26 +15,24 @@ request.get(apiUrl, (error, response, body) => {
         try {
             const todos = JSON.parse(body);
 
-            // Create a map to count completed tasks for each user
-            const completedTasksByUser = new Map();
+            // Create an object to store completed task counts for each user
+            const completedTasksByUser = {};
 
             // Iterate through the todos
             todos.forEach((todo) => {
                 if (todo.completed) {
                     // If the task is completed, increment the count for the user
                     const userId = todo.userId;
-                    if (completedTasksByUser.has(userId)) {
-                        completedTasksByUser.set(userId, completedTasksByUser.get(userId) + 1);
+                    if (completedTasksByUser[userId]) {
+                        completedTasksByUser[userId]++;
                     } else {
-                        completedTasksByUser.set(userId, 1);
+                        completedTasksByUser[userId] = 1;
                     }
                 }
             });
 
-            // Print the number of completed tasks for each user
-            completedTasksByUser.forEach((count, userId) => {
-                console.log(`User ${userId}: ${count} completed tasks`);
-            });
+            // Print the completed tasks counts as an object
+            console.log(completedTasksByUser);
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
