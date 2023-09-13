@@ -29,10 +29,16 @@ request.get(apiUrl, (error, response, body) => {
                 }
             });
 
-            // Print the users with completed tasks
+            // Filter users with at least 3 completed tasks
+            const filteredResults = {};
             for (const userId in completedTasksByUser) {
-                console.log(`User ${userId}: ${completedTasksByUser[userId]} completed tasks`);
+                if (completedTasksByUser[userId] >= 3) {
+                    filteredResults[userId] = completedTasksByUser[userId];
+                }
             }
+
+            // Print the filtered results as an object
+            console.log(JSON.stringify(filteredResults));
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
