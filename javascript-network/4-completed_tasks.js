@@ -31,8 +31,16 @@ request.get(apiUrl, (error, response, body) => {
                 }
             });
 
-            // Print the completed tasks counts as an object
-            console.log(completedTasksByUser);
+            // Create a filtered object with users who completed at least 3 tasks
+            const filteredResults = {};
+            for (const userId in completedTasksByUser) {
+                if (completedTasksByUser[userId] >= 3) {
+                    filteredResults[userId] = completedTasksByUser[userId];
+                }
+            }
+
+            // Print the filtered results as an object
+            console.log(filteredResults);
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
