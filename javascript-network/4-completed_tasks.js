@@ -1,5 +1,3 @@
-!/usr/bin/node
-
 const request = require('request');
 
 // Define the API URL
