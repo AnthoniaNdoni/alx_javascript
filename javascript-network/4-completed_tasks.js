@@ -1,4 +1,4 @@
-#!/usr/bin/node
+!/usr/bin/node
 
 const request = require('request');
 
@@ -31,16 +31,10 @@ request.get(apiUrl, (error, response, body) => {
                 }
             });
 
-            // Create a filtered object with users who completed at least 3 tasks
-            const filteredResults = {};
+            // Print the users with completed tasks
             for (const userId in completedTasksByUser) {
-                if (completedTasksByUser[userId] >= 3) {
-                    filteredResults[userId] = completedTasksByUser[userId];
-                }
+                console.log(`User ${userId}: ${completedTasksByUser[userId]} completed tasks`);
             }
-
-            // Print the filtered results as an object
-            console.log(filteredResults);
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
