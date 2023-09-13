@@ -1,27 +1,28 @@
-const req = require('request');
+#!/usr/bin/node
 
-const url = 'https://swapi-api.alx-tools.com/api/films/';
+const request = require('request');
 
-const user = 'https://swapi-api.alx-tools.com/api/people/18/'
+// Get the API URL from the command line arguments
+const apiUrl = process.argv[2];
 
-let lists = [];
+// Character ID for Wedge Antilles
+const characterId = 18;
 
-req.get(url, (error, response, body) => {
-    const results = JSON.parse(body);
-    results.results.forEach(element => {
-        // lists.push(element.characters.filter(new_char => new_char === user));
-        lists.push(element.characters);
-    });
-    // console.log(lists);
-    const nw_list = [];
-    lists.forEach((people) => {
-        people.forEach((person) =>{
-            // console.log(person)
-            if(person === user){
-                nw_list.push(person)
-            };
-        })
-    });
-
-    console.log(nw_list.length)
+// Send a GET request to the API
+request.get(apiUrl, (error, response, body) => {
+    if (error) {
+        console.error('Error:', error);
+    } else if (response.statusCode !== 200) {
+        console.error(`HTTP Status Code: ${response.statusCode}`);
+    } else {
+        try {
+            const filmsData = JSON.parse(body).results;
+            const moviesWithWedgeAntilles = filmsData.filter((film) =>
+                film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)
+            );
+            console.log(moviesWithWedgeAntilles.length); // Print only the number of movies
+        } catch (parseError) {
+            console.error('Error parsing JSON:', parseError);
+        }
+    }
 });
