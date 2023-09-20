@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cookies and Local Storage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <input type="=text" id="firstname" placeholder="First Name">
+    <input type="text" id="email" placeholder="Email">
+    <button onclick="setCookies()">Log me in</button>
+    <button onclick="showCookies()">Show the cookies</button>
+
+    <p id="cookieInfo"></p>
+
+    <script>
+      function setCookies() {
+        const firstname = document.getElementById("firstname").value;
+        const email = document.getElementById("email").value;
+
+        // Calculate the expiration date, which is 10 days from now
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 10);
+
+        // Set cookies with a 10-days expiration
+        document.cookie = 'firstname=${firstname}; expires=${expirationDate.toUTCString()}; path=/';
+        document.cookie = 'email=${email}; expires=${expirationDate.toUTCString()}; path=/';
+
+        alert("Cookies set successfully!")
+      }
+
+      function showCookies() {
+        const cookies = document.cookie.split("; ");
+        for (const cookie of cookies) {   
+            const [cookiename, cookievalue] = cookie.split("=");
+            alert('Cookie: ${name}=${value}');
+            if (cookieName === name) {
+                return decodeURIComponent(cookievalue);
+            }
+        }
+        return "";
+    }
+
+    function showCookies() {
+        const email = getCookie("email");
+        const firstname = getCookie("firstname");
+            
+        const cookieInfo = document.getElementById("cookieInfo");
+        cookieInfo.textContent = `Email: ${email} - Firstname: ${firstname}`;
+         
+            alert('cookies: ${name}=${value}');
+        }
+    </script>
+    <h1>Login to the website</h1>
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname">
+
+    <label for="email">Email:</label>
+    <input type="text" id="email">
+    
+    <button onclick="setCookies()">Log me in</button>
+
+    <br>
+    <h1>Cookies</h1>
+    <br>
+    <button onclick="showCookies()">show the cookies</button>
+    <div id="cookieContainer"></div>
+    <script src="src=/index.js"></script>
+
+</body>
+</html>

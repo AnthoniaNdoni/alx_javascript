@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies and Local Storage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <input type="text" id="firstname" placeholder="First Name">
+    <input type="text" id="email" placeholder="Email">
+    <button onclick="setCookies()">Log me in</button>
+    <button onclick="showCookies()">Show the cookies</button>
+
+    <p id="cookieInfo"></p>
+
+    <script>
+        function setCookies() {
+            const firstname = document.getElementById("firstname").value;
+            const email = document.getElementById("email").value;
+
+            // Calculate the expiration date, which is 10 days from now
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 10);
+
+            // Set cookies with a 10-day expiration
+            document.cookie = `firstname=${firstname}; expires=${expirationDate.toUTCString()}; path=/`;
+            document.cookie = `email=${email}; expires=${expirationDate.toUTCString()}; path=/`;
+
+            alert("Cookies set successfully!");
+        }
+
+        function getCookie(name) {
+            const cookies = document.cookie.split("; ");
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.split("=");
+                if (cookieName === name) {
+                    return decodeURIComponent(cookieValue);
+                }
+            }
+            return "";
+        }
+
+        function showCookies() {
+            const email = getCookie("email");
+            const firstname = getCookie("firstname");
+            
+            const cookieInfo = document.getElementById("cookieInfo");
+            cookieInfo.textContent = `Email: ${email} - Firstname: ${firstname}`;
+        }
+    </script>
+</body>
+</html>
