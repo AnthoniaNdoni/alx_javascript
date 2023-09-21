@@ -3,59 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookies</title>
+
+    <title>Cookies and Local Storage</title>
     <link rel="stylesheet" href="styles.css">
+    <style></style>
 </head>
 <body>
-    <h1>Login to the website</h1>
-    <form>
-        <div>
-            <input type="text" id="firstname" placeholder="First Name" />
-            <input type="text" id="email" placeholder="Email" />
-            <button onclick="setCookies()">Log me in</button>
-        </div>
-        <br>
-        <button onclick="showCookies()">Show the cookies</button>
-        <br>
-        <p id="cookieInfo"></p>
-    </form>
-
-
-    <script>
-        function setCookies() {
-            const firstname = document.getElementById("firstname").value;
-            const email = document.getElementById("email").value;
-
-            // Calculate the expiration date, which is 10 days from now
-            const expirationDate = new Date();
-            expirationDate.setDate(expirationDate.getDate() + 10);
-
-            // Set cookies with a 10-day expiration
-            document.cookie = `firstname=${firstname}; expires=${expirationDate.toUTCString()}; path=/`;
-            document.cookie = `email=${email}; expires=${expirationDate.toUTCString()}; path=/`;
-
-            alert("Cookies set successfully!");
+    <div class="content">
+        <h1>Login to the website</h1>
+        <form>
+            <input type="=text" id="firstname" placeholder="First Name" />
+            <input type="text" id="email" placeholder="Email"/>
+            <button onclick="setCookies()">Log me in </button>
+            <br>
+            <h1>Cookies</h1>
+            <button onclick="showCookies()">Show the cookies</button>
+        </form>
+    
+    </div>
+</body>
+<script>src="src=/index.js"></script>
+<script>
+    function setCookies () {
+            const firstname = document.getElementById('firstname').value;
+            const email = document.getElementById('email').value;
+            
+            if(firstname && email){
+                Cookies.set('firstname', firstname, { expires: 10});
+                Cookies.set('email', email, { expires: 10});
+            }
         }
-        // function to getcookies with argument name and check it
+        function showCookies () {
+                const show_cookies = document.createElement('p');
+                show_cookies.innerHTML = 'Cookies:' + Cookies.get('firstname')+ ' ' + Cookies.get('email');
+                document.body.appendChild(show_cookies);
+
+        } 
         function getCookie(name) {
-            const cookies = document.cookie.split("; ");
+            const cookies = document.cookie.split(';');
             for (const cookie of cookies) {
-                const [cookieName, cookieValue] = cookie.split("=");
+                const [cookieName, cookieValue] = cookie.trim().split('=');
                 if (cookieName === name) {
                     return decodeURIComponent(cookieValue);
                 }
             }
             return "";
         }
-
-        function showCookies() {
-            const email = getCookie("email");
-            const firstname = getCookie("firstname");
-            
-            const cookieInfo = document.getElementById("cookieInfo");
-            cookieInfo.textContent = `Email: ${email} - Firstname: ${firstname}`;
-        }
     </script>
-</body>
-
 </html>
