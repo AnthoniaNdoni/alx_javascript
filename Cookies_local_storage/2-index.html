@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookies and Local Storage</title>
+    <title>Cookies</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <input type="text" id="firstname" placeholder="First Name">
-    <input type="text" id="email" placeholder="Email">
-    <button onclick="setCookies()">Log me in</button>
-    <button onclick="showCookies()">Show the cookies</button>
+    <h1>Login to the website</h1>
+    <form>
+        <div>
+            <input type="text" id="firstname" placeholder="First Name" />
+            <input type="text" id="email" placeholder="Email" />
+            <button onclick="setCookies()">Log me in</button>
+        </div>
+        <br>
+        <button onclick="showCookies()">Show the cookies</button>
+        <br>
+        <p id="cookieInfo"></p>
+    </form>
 
-    <p id="cookieInfo"></p>
 
     <script>
         function setCookies() {
@@ -29,7 +36,7 @@
 
             alert("Cookies set successfully!");
         }
-
+        // function to getcookies with argument name and check it
         function getCookie(name) {
             const cookies = document.cookie.split("; ");
             for (const cookie of cookies) {
@@ -50,4 +57,5 @@
         }
     </script>
 </body>
+
 </html>
