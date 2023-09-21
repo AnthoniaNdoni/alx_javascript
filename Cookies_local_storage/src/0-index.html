@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to the website</title>
+    <title>Cookies</title>
 </head>
 <body>
+    <div class="content">
     <h1>Login to the website</h1>
-    <label for="firstname">First Name:</label>
-    <input type="text" id="firstname">
-
-    <label for="email">Email:</label>
-    <input type="text" id="email">
-    
-
-    <button onclick="setCookies()">Log me in</button>
-
+    <form>
+        <input type="text" placeholder="Firstname" id="firstname" />
+        <input type="text" id="email" placeholder="Email"/>
+        <button type="button" onclick="setCookies()">Log me in</button>
+    </form>   
     <br>
     <h1>Cookies</h1>
     <br>
     <button onclick="showCookies()">show the cookies</button>
     <div id="cookieContainer"></div>
+    </div>
     <script src="src=/index.js"></script>
 </body>
 </html>

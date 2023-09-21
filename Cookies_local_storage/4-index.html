@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h2>Login Form</h2>
     <div id="LoginForm" style="display: none;">
-        <h2>Login Form</h2>
-    
         <input type="text" id="firstname" placeholder="First Name">
         <input type="text" id="email" placeholder="Email">
         <button onclick="setCookies()">Log me in</button>
         <button onclick="showCookies()">Show the cookies</button>
-        </div>
+    </div>
     <p id="cookieInfo"></p>
 
     <script>
@@ -75,12 +74,17 @@
         document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         
+        // Delete cookies using js-cookies
+        Cookies.remove("firstname");
+        Cookies.remove("email");
+
         showForm();
     }
     function showWelcomeMessageOrForm() {
         const firstname = getCookie("firstname");
         
         if (firstname) {
+            // create a welcome message with JavaScript
             const welcomeMessage = document.createElement("h1");
             welcomeMessage.textContent = `Welcome ${firstname} (logout)`;
             
@@ -103,6 +107,14 @@
             showForm();
 
         }
+    }
+    function setCookiesAndShowWelcomMessage() {
+        const firstname = document.getElementById("loginFirstName").value;
+        const email = document.getElementById("loginEail").value;
+
+        // set cookies using js.cookie
+        cookies.set("firstname", firstname, {expires: 10});
+        cookies.set("email", email, {expires:10});
     }
     showWelcomeMessageOrForm();  
 
